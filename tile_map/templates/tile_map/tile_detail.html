@@ -1,0 +1,55 @@
+{% extends 'tile_map/tile_base.html' %}
+
+{% block title %}
+{{ Tile.title}} Details
+{% endblock %}
+
+{% block body %}
+<div>
+  <div align="center">
+   {% if Tile.id > 1 %}
+    <a href="{% url 'tile_map:tile_detail' previous_id %}">
+      <img src="\static\tile_map\nav_imgs\tile_left_on.jpg" />
+    </a>
+    {% else %}
+    <img src="\static\tile_map\nav_imgs\tile_left_off.jpg" />
+    {% endif %}
+    <a href=#>
+      <img src="\static\tile_map\nav_imgs\tile_random.jpg" />
+    </a>
+    {% if Tile.id != max_id %}
+    <a href="{% url 'tile_map:tile_detail' next_id %}">
+      <img src="\static\tile_map\nav_imgs\tile_right_on.jpg" />
+    </a>
+    {% else %}
+    <img src="\static\tile_map\nav_imgs\tile_right_off.jpg"/>
+    {% endif %}
+  </div>
+</div>
+<div class="container-fluid songs-container">
+  <div class="row">
+    <!-- Left Tile Image and Title -->
+    <div class="col-sm-4">
+      <div class="panel panel-default" align="center">
+        <div class="panel-body">
+          <h1>{{ Tile.title }}</h1>
+            <a href="http://127.0.0.1:8000/static/tile_map/tile_imgs/detail/{{Tile.title}}_detail.jpg">
+              <img src="\static\tile_map\tile_imgs\detail\{{ Tile.title }}_detail.jpg" class="img-responsive" id="#">
+            </a>
+        </div>
+      </div>
+    </div>
+        <!-- Right Tile Description Info -->
+    <div class="col-sm-8">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h3>Tile Description</h3>
+          <p id="detail_description">
+            {{ Tile.description|linebreaksbr }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

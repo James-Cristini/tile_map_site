@@ -1,0 +1,37 @@
+{% extends 'tile_map/tile_base.html' %}
+
+{% block title %}
+Tiles
+{% endblock %}
+
+{% block body %}
+<div>
+  <table>
+    <tbody>
+      {% if tile_matrix %}
+        {% for tile_row in tile_matrix %}
+        <tr>
+          {% for tile in tile_row %}
+            {% if tile %}
+              <td id="tile_thumb">
+                <a href="{% url 'tile_map:tile_detail' tile.id %}"  title="{{ tile.title }}">
+                  <img src="\static\tile_map\tile_imgs\thumb\{{ tile.title }}_thumb.jpg" class="img-responsive" class="thumbnail">
+                </a>
+              </td>
+            {% else %}
+            <td id="blank_thumb">
+              <img src="\static\tile_map\tile_imgs\thumb\blank.jpg" class="img-responsive" class="blank_td">
+            </td>
+            {% endif %}
+          </td>
+          {% endfor %}
+        </tr>
+        {% endfor %}
+      {% else %}
+      <h1> no tiles to display :/</h1>
+      {% endif %}
+    </tbody>
+
+  </table>
+</div>
+{% endblock %}
