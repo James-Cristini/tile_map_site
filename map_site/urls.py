@@ -19,4 +19,5 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^tile_map/', include('tile_map.urls')),
+    url(r'^other_things/', include('other_things.urls')),
 ]

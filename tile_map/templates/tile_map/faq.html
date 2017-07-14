@@ -1,0 +1,48 @@
+{% extends 'tile_map/tile_base.html' %}
+
+{% block title %}
+{{ Tile.title}} About this project
+{% endblock %}
+
+{% block body %}
+</br></br>
+<h1> Frequently Asked Questions </h1>
+{% for question in all_questions %}
+<div class="container-fluid question-container" id="question_container">
+  <div class="row">
+    <div class="col-lg-12" style="text-align:left">
+      {{count}}
+      <span id="question"><b>{{question.question|linebreaksbr}}</b></span>
+    </br>
+      <span id="answer">{{question.answer|linebreaksbr}}</span>
+    </div>
+  </div>
+</div>
+{% endfor %}
+
+<style>
+body{
+  background-color: white;
+}
+#question_container{
+  background-color:white;
+  text-align:left;
+  border:1px solid grey;
+  padding:8px;
+  margin:8px;
+  margin-left:30px;
+  margin-right:30px;
+  border-radius:6px;
+}
+#question_container:hover{
+background-color:#f4f4f4;
+}
+#answer{
+  }
+#question_container:hover #answer {
+}
+</style>
+<script>
+
+</script>
+{% endblock %}

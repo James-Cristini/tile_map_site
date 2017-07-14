@@ -1,0 +1,13 @@
+{% extends 'tile_map/tile_base.html' %}
+
+{% block title %}
+{{culture.name|linebreaksbr}}
+{% endblock %}
+
+{% block body %}
+</br></br>
+<h1>{{culture.name|linebreaksbr}}</h1>
+<p>
+  {{culture.description}|linebreaksbr}
+</p>
+{% endblock %}

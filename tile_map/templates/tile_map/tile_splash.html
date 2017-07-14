@@ -1,0 +1,56 @@
+<head>
+
+</head>
+
+<body id="splash">
+ <div id="enter_div">
+   <a id="enter_btn" href="{% url 'tile_map:tile_index' %}">Enter</a>
+ </div>
+
+<!-- CSS Style for this page only-->
+ <style>
+ body {
+     background-image: url("/static/tile_map/tile_imgs/Full_Map.jpg");
+ }
+ #enter_btn{
+   background-color:white;
+   color:black;
+   text-decoration:none;
+   width:18px;
+   font-size:20px;
+ }
+ #enter_div{
+   position:absolute;
+   top:75%;
+   left:50%;
+   opacity:.6;
+ }
+ </style>
+
+ <!-- Script for this page only-->
+ <script>
+ var x = 1950;
+ var y = -100;
+ function move_horizontal() {
+   x--;
+   document.getElementById("splash").style.backgroundPosition = x + 'px';
+ }
+
+ function move_vertical() {
+   y--
+
+   document.getElementById("splash").style.backgroundPosition = x + 'px' + ' ' + y + 'px';
+ }
+
+ window.setInterval(move_vertical, 50);
+ window.onload = function(event) {
+   document.onkeyup = function(event) {
+     var e = (!event) ? window.event : event;
+     switch(e.keyCode) {
+       case 13:
+          window.location.href = "{% url 'tile_map:tile_index' %}"
+          break;
+       }};
+ };
+ </script>
+</body>

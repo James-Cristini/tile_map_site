@@ -1,0 +1,45 @@
+{% extends 'other_things/base.html' %}
+
+{% block title %}
+{{ Tile.title}} Home Page
+{% endblock %}
+
+{% block body %}
+</br></br>
+<h1>Home</h1>
+<!--
+<div class="image-container container-fluid">
+  <div class="row equal">
+    {% for image in image_list %}
+    <div class="col-sm-6 col-lg-4" id="image_row">
+      <div class="thumbnail" id="img_pnels">
+        <a href="/static/other_things/images/{{image.title}}.jpg">
+          <img src="/static/other_things/images/{{image.title}}.jpg" class="img-responsive" id="image">
+        </a>
+        <div class="caption" id="image_caption">
+          <h2 id="image_title"></h2>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+-->
+<div id="wrapper">
+	<div id="columns">
+    {% for image in image_list %}
+		<div class="pin">
+      <a href="{% url 'other_things:detail' image.id %}">
+			   <img id="pin_image" src="/static/other_things/images/{{image.title}}.jpg" />
+      </a>
+			<h5 id=image_title>
+				{{ image.title }}
+			</h5>
+		</div>
+    {% endfor %}
+	</div>
+</div>
+
+<style></style>
+<script></script>
+{% endblock %}

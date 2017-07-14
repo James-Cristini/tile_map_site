@@ -5,51 +5,171 @@
 {% endblock %}
 
 {% block body %}
+</br></br></br>
 <div>
   <div align="center">
-   {% if Tile.id > 1 %}
-    <a href="{% url 'tile_map:tile_detail' previous_id %}">
-      <img src="\static\tile_map\nav_imgs\tile_left_on.jpg" />
+    {% if Tile.id > 1 %}
+    <a href="{% url 'tile_map:tile_detail' 1 %}">
+      <div class="glyphicon glyphicon-fast-backward" id="nav_arrow_on"></div>
     </a>
     {% else %}
-    <img src="\static\tile_map\nav_imgs\tile_left_off.jpg" />
+    <div class="glyphicon glyphicon-fast-backward" id="nav_arrow_off"></div>
     {% endif %}
-    <a href=#>
-      <img src="\static\tile_map\nav_imgs\tile_random.jpg" />
+    {% if Tile.id > 1 %}
+    <a href="{% url 'tile_map:tile_detail' previous_id %}">
+      <div class="glyphicon glyphicon-backward" id="nav_arrow_on"></div>
+    </a>
+    {% else %}
+    <div class="glyphicon glyphicon-backward" id="nav_arrow_off"></div>
+    {% endif %}
+    <a href="{% url 'tile_map:tile_detail' random_id %}">
+      <div class="glyphicon glyphicon-random" id="nav_arrow_on"></div>
     </a>
     {% if Tile.id != max_id %}
     <a href="{% url 'tile_map:tile_detail' next_id %}">
-      <img src="\static\tile_map\nav_imgs\tile_right_on.jpg" />
+      <div class="glyphicon glyphicon-forward" id="nav_arrow_on"></div>
     </a>
     {% else %}
-    <img src="\static\tile_map\nav_imgs\tile_right_off.jpg"/>
+    <div class="glyphicon glyphicon-forward" id="nav_arrow_off"></div>
+    {% endif %}
+    {% if Tile.id != max_id %}
+    <a href="{% url 'tile_map:tile_detail' max_id %}">
+      <div class="glyphicon glyphicon-fast-forward" id="nav_arrow_on"></div>
+    </a>
+    {% else %}
+    <div class="glyphicon glyphicon-fast-forward" id="nav_arrow_off"></div>
     {% endif %}
   </div>
 </div>
-<div class="container-fluid songs-container">
+</br></br>
+<div class="container-fluid desc-container">
   <div class="row">
     <!-- Left Tile Image and Title -->
-    <div class="col-sm-4">
+    <div class="col-sm-6 col-md-4">
       <div class="panel panel-default" align="center">
         <div class="panel-body">
-          <h1>{{ Tile.title }}</h1>
             <a href="http://127.0.0.1:8000/static/tile_map/tile_imgs/detail/{{Tile.title}}_detail.jpg">
-              <img src="\static\tile_map\tile_imgs\detail\{{ Tile.title }}_detail.jpg" class="img-responsive" id="#">
+              <img src="\static\tile_map\tile_imgs\detail\{{ Tile.title }}_detail.jpg" class="img-responsive" id="tile_detail_img">
             </a>
         </div>
       </div>
     </div>
-        <!-- Right Tile Description Info -->
-    <div class="col-sm-8">
+        <!-- Right Tile Description and Story Piece -->
+    <div class="col-sm-6 col-md-8">
       <div class="panel panel-default">
-        <div class="panel-body">
-          <h3>Tile Description</h3>
+        <div class="panel-body" style="text-align:left">
+          <h1 style="text-align:center">{{ Tile.title }}</h1>
+
           <p id="detail_description">
             {{ Tile.description|linebreaksbr }}
+          </br><hr />
+          {% if people %}
+          {% for person in people %}
+          {% if person.quote != "none" %}
+            <em>{{person.quote|linebreaksbr}}
+            </br>
+            <a href="/tile_map/world_info/people/{{person.id}}">{{person.name}}, {{person.occupation}}</a></em>
+            </br></br>
+          {% endif %}
+          {% endfor %}
+          {% endif %}
+          {% if Tile.story != "none" %}
+            <em>{{Tile.story|linebreaksbr}}</em>
+          {% endif %}
+
           </p>
         </div>
       </div>
+      <hr />
+      <div class="container-fluid">
+        <div class="row">
+
+          {% if places %}
+          <div class="col-sm-4">
+            <h4>Locations</h4>
+            {% for place in places %}
+            <a href="/tile_map/world_info/places/{{place.id}}">
+              <h5>{{place.name}}</h5>
+            </a>
+            {% endfor %}
+          </div>
+          {% endif %}
+
+          {% if tradegoods %}
+          <div class="col-sm-4">
+            <h4>Trade Goods</h4>
+            {% for tradegood in tradegoods %}
+            <a href="/tile_map/world_info/tradegoods/{{tradegood.id}}">
+              <h5>{{tradegood.name}}</h5>
+            </a>
+            {% endfor %}
+          </div>
+          {% endif %}
+
+          {% if organizations %}
+          <div class="col-sm-4">
+            <h4>Organizations</h4>
+            {% for organization in organizations %}
+            <a href="/tile_map/world_info/organizations/{{organization.id}}">
+              <h5>{{organization.name}}</h5>
+            </a>
+          {% endfor %}
+          {% endif %}
+
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
+<hr />
+
+<style>
+#nav_arrow_on{
+  font-size:3.5em;
+  color:black;
+  padding:8px;
+}
+#nav_arrow_on:hover{
+  color:#303133;
+}
+#nav_arrow_off {
+  font-size:3.5em;
+  color:#909296;
+  padding:8px;
+}
+#place_link{
+  border:1px solid lightgray;
+  background-color: rgb(250, 250, 250);
+  text-decoration:none;
+  padding:3px;
+  border-radius:7px;
+}
+#place_link:hover{
+  opacity:.7;
+}
+</style>
+
+<!-- Script for this page only-->
+<script type="text/javascript">
+//Allows the user to navigate between tiles using the left and right arrow keys
+  window.onload = function(event) {
+    document.onkeyup = function(event) {
+      var e = (!event) ? window.event : event;
+      switch(e.keyCode) {
+        case 37:
+          {% if Tile.id > 1 %}
+            window.location.href = "{% url 'tile_map:tile_detail' previous_id %}"
+          {% endif %}
+          break;
+        case 39:
+          {% if Tile.id != max_id %}
+            window.location.href = "{% url 'tile_map:tile_detail' next_id %}"
+          {% endif %}
+          break;
+        }
+    };
+ };
+</script>
 {% endblock %}

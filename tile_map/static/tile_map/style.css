@@ -20,14 +20,6 @@ h3{
   padding:4px;
 }
 
-ul.errorlist {
-    padding-left: 0;
-}
-
-ul.errorlist > li {
-    list-style: none;
-}
-
 .navbar{
   border-radius: 0;
 }
@@ -45,55 +37,6 @@ ul.errorlist > li {
     padding-bottom: 99999px;
 }
 
-.checkbox-label{
-  font-size:12px;
-  padding:7px;
-}
-
-.btn{
-  padding:8px;
-  font-size:14px;
-}
-
-/* Sidebar styling */
-.sidebar-nav{
-  padding:0;
-  list-style: none;
-}
-
-.sidebar-nav 1i{
-  text-indent: 20px;
-  line-height: 40px;
-}
-
-.sidebar-nav a{
-  display: block;
-  text-decoration: none;
-  color: #ddd;
-}
-
-.sidebar-nav lis a:hover{
-  background: #16A085;
-}
-
-.navbar {
-    border-radius: 0;
-}
-
-.navbar-brand {
-    font-family: 'Satisfy', cursive;
-}
-
-.glyphicon-star {
-    color: #CCCCCC;
-    font-size: 16px;
-}
-
-.glyphicon-star.active {
-    color: #FDB230;
-}
-
-
 #tile_thumb {
   background:url(https://dummyimage.com/600x400/fff/fff) center no-repeat;
   transition:0.25s;
@@ -107,4 +50,13 @@ ul.errorlist > li {
 
 #detail_description {
   text-align: left;
+}
+
+
+#splash_div {
+
+}
+#section1 {
+  border: 1px solid:red;
+
 }

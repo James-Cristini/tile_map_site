@@ -1,0 +1,15 @@
+{% extends 'tile_map/tile_base.html' %}
+
+{% block title %}
+{{tradegood.name|linebreaksbr}}
+{% endblock %}
+
+{% block body %}
+</br></br>
+<h1>{{tradegood.name|linebreaksbr}}</h1>
+<p>
+  {{tradegood.goods_type}}</br>
+  {{tradegood.description|linebreaksbr}}
+</p>
+
+{% endblock %}

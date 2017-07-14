@@ -1,0 +1,67 @@
+{% extends 'tile_map/tile_base.html' %}
+
+{% block title %}
+{{person.name|linebreaksbr}}
+{% endblock %}
+
+{% block body %}
+</br></br></br></br>
+<div id="person_div">
+    <img src="\static\tile_map\person_imgs\person.jpg" height=150px/>
+    <h2>{{person.name|linebreaksbr}}</h2>
+    <h4>{{person.occupation|linebreaksbr}} </h4>
+</div>
+
+{% if person.description != "none"%}
+<div id="description_div">
+  <p>
+    <h5>Description</h5>
+    {{person.description|linebreaksbr}}
+  </p>
+</div>
+{% endif %}
+
+{% if person.quote != "none"%}
+<div id="quote_div">
+  <p>
+    {{person.quote|linebreaksbr}}
+  </p>
+  <a href="{% url 'tile_map:tile_detail' tile.id %}">
+    <span>From {{tile.title}}</span>
+  </a>
+</div>
+{% endif %}
+
+
+<style>
+#quote_div{
+  text-align:center;
+  width:80%;
+  margin:auto;
+  border:1px solid lightgray;
+  padding:10px;
+  margin-bottom:10px;
+  margin-top:10px;
+}
+#person_div{
+  margin:auto;
+  border:1px solid lightgray;
+  width:80%;
+  padding:10px;
+}
+#person_div img{
+  padding:5px;
+}
+#person_location_div{
+  text-align:center;
+  width:80%;
+  margin:auto;
+  border:1px solid lightgray;
+  background-color:#f4f4f4;
+}
+#parent_location_div h5 {
+  text-decoration:none;
+  color:black;
+}
+</style>
+{% endblock %}

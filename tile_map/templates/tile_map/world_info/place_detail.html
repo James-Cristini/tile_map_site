@@ -1,0 +1,184 @@
+{% extends 'tile_map/tile_base.html' %}
+
+{% block title %}
+{{place.name|linebreaksbr}}
+{% endblock %}
+
+{% block body %}
+</br></br></br>
+<div id="current_location_div">
+    <div id="place_name_and_img">
+      <h2>{{place.name|linebreaksbr}}</h2>
+      <img src="\static\tile_map\place_imgs\{{place.image_name}}.jpg" />
+    </div>
+  </br>
+    <div id="place_desc">
+      {{place.description|linebreaksbr}}
+    </div>
+  </br>
+</div>
+
+</br>
+
+{% if place.name != "Eleros" %}
+<div id="parent_location_div">
+  <a href="/tile_map/world_info/places/{{parent_loc.id}}">
+    <h5> Return to {{parent_loc.name}}</h5>
+  </a>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    {% for tile in tiles %}
+    <a href="{% url 'tile_map:tile_detail' tile.id %}">
+      <div class="col-md-2 col-sm-3 col-xs-4" >
+        <img id="tile_image" src="\static\tile_map\tile_imgs\thumb\{{ tile.title }}_thumb.jpg"/>
+        <h5>
+          {{tile.title}}
+        </h5>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+{% if sub_locations %}
+<hr />
+<h4>Places of {{place.name}}</h4>
+<div class="container-fluid">
+  <div class="row">
+    {% for sub_loc in sub_locations %}
+    <a href="/tile_map/world_info/places/{{sub_loc.id}}">
+      <div class="col-md-2 col-sm-3 col-xs-4" >
+        <img id="tile_image" src="\static\tile_map\place_imgs\{{sub_loc.image_name}}.jpg"/>
+        <h5>
+          {{sub_loc.name}}
+        </h5>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+
+{% if people %}
+<hr />
+<h4>People of {{place.name}}</h4>
+<div class="container-fluid">
+  <div class="row">
+    {% for person in people %}
+    <a href="/tile_map/world_info/people/{{person.id}}">
+      <div class="col-md-2 col-sm-3 col-xs-4" >
+        <img id="tile_image" src="\static\tile_map\person_imgs\{{person.image_name}}.jpg"/>
+        <h5>
+          {{person.name}}
+        </h5>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+
+{% if organizations %}
+<hr />
+<h4>Organizations of {{place.name}}</h4>
+<div class="container-fluid">
+  <div class="row">
+    {% for organization in organizations %}
+    <a href="/tile_map/world_info/organizations/{{organization.id}}">
+      <div class="col-md-2 col-sm-3 col-xs-4" >
+        <img id="tile_image" src="\static\tile_map\porganization_imgs\{{organization.image_name}}.jpg"/>
+        <h5>
+          {{organization.name}}
+        </h5>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+</div>
+{% else %}
+{% endif %}
+
+{% if tradegoods %}
+<hr />
+<h4>Tradegoods of {{place.name}}</h4>
+<div class="container-fluid">
+  <div class="row">
+    {% for tradegood in tradegoods %}
+    <a href="/tile_map/world_info/tradegoods/{{tradegood.id}}">
+      <div class="col-md-2 col-sm-3 col-xs-4" >
+        <img id="tile_image" src="\static\tile_map\tradegood_imgs\{{tradegood.image_name}}.jpg"/>
+        <h5>
+          {{tradegood.name}}
+        </h5>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+
+{% if works %}
+<hr />
+<h4>Famous works of {{place.name}}</h4>
+<div class="container-fluid">
+  <div class="row">
+    {% for work in works %}
+    <a href="/tile_map/world_info/works/{{work.id}}">
+      <div class="col-md-2 col-sm-3 col-xs-4" >
+        <img id="tile_image" src="\static\tile_map\famouswork_imgs\{{work.image_name}}.jpg"/>
+        <h5>
+          {{work.title}}
+        </h5>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+</br>
+
+<style>
+#image_title{
+	text-align:center
+}
+.navbar-brand{
+  font-family: 'Satisfy', cursive;
+}
+#tile_image{
+  min-height:75px;
+  max-height:75px;
+  max-width:100%;
+}
+#current_location_div{
+  text-align:center;
+  margin:auto;
+  width:90%;
+  border:1px solid lightgray;
+}
+#parent_location_div {
+  text-align:center;
+  width:90%;
+  margin:auto;
+  border:1px solid lightgray;
+  background-color:#f4f4f4;
+  margin-bottom:10px;
+}
+#parent_location_div h5 {
+text-decoration:none;
+color:black;
+}
+#parent_location_div:hover{
+  opacity:.7;
+}
+#place_name_and_img img{
+  width:30%;
+}
+#place_desc{
+  width:80%;
+  margin:auto;
+}
+</style>
+<script></script>
+{% endblock %}

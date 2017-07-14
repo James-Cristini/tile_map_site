@@ -1,0 +1,14 @@
+{% extends 'tile_map/tile_base.html' %}
+
+{% block title %}
+{{work.title|linebreaksbr}}
+{% endblock %}
+
+{% block body %}
+</br></br>
+<h1>{{work.title|linebreaksbr}}</h1>
+<h4>{{work.author|linebreaksbr}}</h4>
+<p>
+  {{work.excerpt|linebreaksbr}}
+</p>
+{% endblock %}

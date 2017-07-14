@@ -1,0 +1,14 @@
+{% extends 'tile_map/tile_base.html' %}
+
+{% block title %}
+{{organization.name|linebreaksbr}}
+{% endblock %}
+
+{% block body %}
+</br></br>
+<h1>{{organization.name|linebreaksbr}}</h1>
+<h4>{{organization.organization_type}}</h4>
+<p>
+  {{organization.description|linebreaksbr}}
+</p>
+{% endblock %}

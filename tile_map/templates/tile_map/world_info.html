@@ -1,0 +1,119 @@
+{% extends 'tile_map/tile_base.html' %}
+
+{% block title %}
+World Info
+{% endblock %}
+
+{% block body %}
+</br></br>
+<h2>World Info</h2>
+<hr />
+
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="col-md-3" id="col_div">
+      <h4>People</h4>
+      {% for person in all_persons %}
+      <a style="text-align:left" href="/tile_map/world_info/people/{{person.id}}" >
+        <div id="col_item">
+          <img src="\static\tile_map\person_imgs\{{person.image_name}}.jpg" style="width:30%"/>
+          <span>{{person.name}}</span>
+          </br>
+        </div>
+      </a>
+      {% endfor %}
+      </br>
+    </div>
+
+    <div class="col-md-3" id="col_div">
+      <h4>Places</h4>
+      {% for place in all_places %}
+      <a style="text-align:left" href="/tile_map/world_info/places/{{place.id}}">
+        <div id="col_item">
+          <img src="\static\tile_map\place_imgs\{{place.image_name}}.jpg" style="width:30%"/>
+          <span>{{place.name}}</span>
+          </br>
+        </div>
+      </a>
+      {% endfor %}
+      </br>
+    </div>
+
+    <div class="col-md-3" id="col_div">
+      <h4>Famous Works</h4>
+      {% for art in all_works_of_art %}
+      <a style="text-decoration:none" href="/tile_map/world_info/works/{{art.id}}">
+        <img src="\static\tile_map\place_imgs\{{place.image_name}}.jpg" style="width:30%"/>
+        <div id="col_item">
+          <span>{{art.title}}</span>
+          </br>
+        </div>
+      </a>
+      {% endfor %}
+      </br>
+    </div>
+
+    <div class="col-md-3" id="col_div">
+      <h4>Tradegoods</h4>
+      {% for tradegood in all_tradegoods %}
+      {% if tradegood.name != "none" %}
+      <a style="text-decoration:none" href="/tile_map/world_info/tradegoods/{{tradegood.id}}">
+        <div id="col_item">
+          <span>{{tradegood.name}}</span>
+          </br>
+        </div>
+      </a>
+      {% endif %}
+      {% endfor %}
+    </br>
+    </div>
+
+    <div class="col-md-3" id="col_div">
+      <h4>Organizations</h4>
+      {% for organization in all_organizations %}
+      <a style="text-decoration:none" href="/tile_map/world_info/organizations/{{organization.id}}">
+        <div class="list" id="col_item">
+          <span>{{organization.name}}</span>
+          </br>
+        </div>
+      </a>
+      {% endfor %}
+      </br>
+    </div>
+
+
+    <div class="col-md-3" id="col_div">
+      <h4>Cultures</h4>
+      {% for culture in all_cultures %}
+      <a style="text-decoration:none" href="/tile_map/world_info/cultures/{{culture.id}}">
+        <div id="col_item">
+          <span>{{culture.name}}</span>
+          </br>
+        </div>
+      </a>
+      {% endfor %}
+      </br>
+    </div>
+  </div>
+</div>
+
+<style>
+#col_div {
+  border:1px solid lightgray;
+  background-color:rgb(251, 251, 251)
+}
+#col_item {
+  text-decoration:none;
+  padding:5px;
+  margin:5px;
+  border:1px solid lightgray;
+  background-color:white;
+  border-radius:5px;
+}
+#col_item:hover{
+  opacity:.8;
+  background-color:rgb(255, 255, 255)
+}
+</style>
+{% endblock %}

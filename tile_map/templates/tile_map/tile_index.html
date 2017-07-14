@@ -5,8 +5,9 @@ Tiles
 {% endblock %}
 
 {% block body %}
-<div>
-  <table>
+<div id="table_div">
+</br></br>
+  <table id="tile_table">
     <tbody>
       {% if tile_matrix %}
         {% for tile_row in tile_matrix %}
@@ -34,4 +35,7 @@ Tiles
 
   </table>
 </div>
+<style>
+</style>
+
 {% endblock %}

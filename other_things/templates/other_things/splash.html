@@ -1,0 +1,56 @@
+<body>
+
+<div id="enter_div">
+<a id="enter_img" href="{% url 'other_things:home' %}">
+  <img src="/static/other_things/images/azeth.jpg" />
+</a>
+</div>
+
+</body>
+<style>
+/*
+#enter_div{
+  background-color:white;
+  display:block;
+  margin: auto;
+}
+#enter_img{
+  display: block;
+  margin: auto;
+  width: 50%;
+}
+*/
+
+#enter_div {
+  animation-name: spinning-circle;
+  animation-duration: 250s;
+  animation-iteration-count: infinite;
+
+}
+#enter_div img {
+  width: 100%;
+  height: auto;
+}
+
+@-webkit-keyframes spinning-circle {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+</style>
+<script>
+window.onload = function(event) {
+  document.onkeyup = function(event) {
+    var e = (!event) ? window.event : event;
+    switch(e.keyCode) {
+      case 13:
+         window.location.href = "{% url 'other_things:home' %}"
+         break;
+      }};
+};
+</script>
