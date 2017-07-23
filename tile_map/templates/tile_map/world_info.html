@@ -12,56 +12,53 @@ World Info
 <div class="container-fluid">
   <div class="row">
 
-    <div class="col-md-3" id="col_div">
-      <h4>People</h4>
+    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" id="col_div">
+      <h3>People</h3>
       {% for person in all_persons %}
-      <a style="text-align:left" href="/tile_map/world_info/people/{{person.id}}" >
+      <a href="/tile_map/world_info/people/{{person.id}}" >
         <div id="col_item">
-          <img src="\static\tile_map\person_imgs\{{person.image_name}}.jpg" style="width:30%"/>
+          <img src="\static\tile_map\person_imgs\{{person.image_name}}.jpg"/>
           <span>{{person.name}}</span>
-          </br>
         </div>
       </a>
       {% endfor %}
       </br>
     </div>
 
-    <div class="col-md-3" id="col_div">
-      <h4>Places</h4>
+    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" id="col_div">
+      <h3>Places</h3>
       {% for place in all_places %}
-      <a style="text-align:left" href="/tile_map/world_info/places/{{place.id}}">
+      <a href="/tile_map/world_info/places/{{place.id}}">
         <div id="col_item">
-          <img src="\static\tile_map\place_imgs\{{place.image_name}}.jpg" style="width:30%"/>
+          <img src="\static\tile_map\place_imgs\{{place.image_name}}.jpg"/>
           <span>{{place.name}}</span>
-          </br>
         </div>
       </a>
       {% endfor %}
       </br>
     </div>
 
-    <div class="col-md-3" id="col_div">
-      <h4>Famous Works</h4>
+    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" id="col_div">
+      <h3>Famous Works</h3>
       {% for art in all_works_of_art %}
-      <a style="text-decoration:none" href="/tile_map/world_info/works/{{art.id}}">
-        <img src="\static\tile_map\place_imgs\{{place.image_name}}.jpg" style="width:30%"/>
+      <a href="/tile_map/world_info/works/{{art.id}}">
         <div id="col_item">
+          <img src="\static\tile_map\famouswork_imgs\{{art.image_name}}.jpg"/>
           <span>{{art.title}}</span>
-          </br>
         </div>
       </a>
       {% endfor %}
       </br>
     </div>
 
-    <div class="col-md-3" id="col_div">
-      <h4>Tradegoods</h4>
+    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" id="col_div">
+      <h3>Tradegoods</h3>
       {% for tradegood in all_tradegoods %}
       {% if tradegood.name != "none" %}
-      <a style="text-decoration:none" href="/tile_map/world_info/tradegoods/{{tradegood.id}}">
+      <a href="/tile_map/world_info/tradegoods/{{tradegood.id}}">
         <div id="col_item">
+          <img src="\static\tile_map\tradegood_imgs\{{tradegood.image_name}}.jpg"/>
           <span>{{tradegood.name}}</span>
-          </br>
         </div>
       </a>
       {% endif %}
@@ -69,27 +66,26 @@ World Info
     </br>
     </div>
 
-    <div class="col-md-3" id="col_div">
-      <h4>Organizations</h4>
+    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" id="col_div">
+      <h3>Organizations</h3>
       {% for organization in all_organizations %}
-      <a style="text-decoration:none" href="/tile_map/world_info/organizations/{{organization.id}}">
+      <a href="/tile_map/world_info/organizations/{{organization.id}}">
         <div class="list" id="col_item">
+          <img src="\static\tile_map\organization_imgs\{{organization.image_name}}.jpg"/>
           <span>{{organization.name}}</span>
-          </br>
         </div>
       </a>
       {% endfor %}
       </br>
     </div>
 
-
-    <div class="col-md-3" id="col_div">
-      <h4>Cultures</h4>
+    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" id="col_div">
+      <h3>Cultures</h3>
       {% for culture in all_cultures %}
-      <a style="text-decoration:none" href="/tile_map/world_info/cultures/{{culture.id}}">
+      <a href="/tile_map/world_info/cultures/{{culture.id}}">
         <div id="col_item">
+          <img src="\static\tile_map\culture_imgs\{{culture.image_name}}.jpg"/>
           <span>{{culture.name}}</span>
-          </br>
         </div>
       </a>
       {% endfor %}
@@ -101,7 +97,23 @@ World Info
 <style>
 #col_div {
   border:1px solid lightgray;
-  background-color:rgb(251, 251, 251)
+  background-color:rgb(251, 251, 251);
+}
+#col_div a{
+  text-align:left;
+}
+#col_item img {
+  max-height:80%;
+  width:auto;
+  object-fit:contain;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+#col_item span {
+  position: relative;
+  top: 10%;
+  transform: translateY(-50%);
 }
 #col_item {
   text-decoration:none;
@@ -110,6 +122,7 @@ World Info
   border:1px solid lightgray;
   background-color:white;
   border-radius:5px;
+  height:125px;
 }
 #col_item:hover{
   opacity:.8;

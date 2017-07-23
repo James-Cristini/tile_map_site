@@ -62,7 +62,10 @@
 
           <p id="detail_description">
             {{ Tile.description|linebreaksbr }}
-          </br><hr />
+
+          </br>
+
+          <hr />
           {% if people %}
           {% for person in people %}
           {% if person.quote != "none" %}
@@ -77,6 +80,7 @@
             <em>{{Tile.story|linebreaksbr}}</em>
           {% endif %}
 
+
           </p>
         </div>
       </div>
@@ -86,12 +90,14 @@
 
           {% if places %}
           <div class="col-sm-4">
+
             <h4>Locations</h4>
             {% for place in places %}
-            <a href="/tile_map/world_info/places/{{place.id}}">
-              <h5>{{place.name}}</h5>
-            </a>
+              <a href="/tile_map/world_info/places/{{place.id}}">
+                <h5 id="item">{{place.name}}</h5>
+              </a>
             {% endfor %}
+            
           </div>
           {% endif %}
 
@@ -99,10 +105,11 @@
           <div class="col-sm-4">
             <h4>Trade Goods</h4>
             {% for tradegood in tradegoods %}
-            <a href="/tile_map/world_info/tradegoods/{{tradegood.id}}">
-              <h5>{{tradegood.name}}</h5>
-            </a>
+              <a href="/tile_map/world_info/tradegoods/{{tradegood.id}}">
+                <h5>{{tradegood.name}}</h5>
+              </a>
             {% endfor %}
+
           </div>
           {% endif %}
 
@@ -110,11 +117,33 @@
           <div class="col-sm-4">
             <h4>Organizations</h4>
             {% for organization in organizations %}
-            <a href="/tile_map/world_info/organizations/{{organization.id}}">
-              <h5>{{organization.name}}</h5>
-            </a>
+              <a href="/tile_map/world_info/organizations/{{organization.id}}">
+                <h5>{{organization.name}}</h5>
+              </a>
           {% endfor %}
+
+          </div>
           {% endif %}
+
+          {% if not places %}
+          <div class="col-sm-4">
+            <a id="add_section" href=#><h4>Add Locations</h4></a>
+          </div>
+          {% endif %}
+
+          {% if not tradegoods %}
+          <div class="col-sm-4">
+            <a id="add_section" href=#><h4>Add Trade Goods</h4></a>
+          </div>
+          {% endif %}
+
+          {% if not organizations %}
+          <div class="col-sm-4">
+            <a id="add_section" href=#><h4>Add Organization</h4></a>
+          </div>
+          {% endif %}
+
+
 
           </div>
         </div>
@@ -148,6 +177,14 @@
 }
 #place_link:hover{
   opacity:.7;
+}
+#item{
+}
+#add_item{
+  color:navy;
+}
+#add_section{
+  color:coral;
 }
 </style>
 

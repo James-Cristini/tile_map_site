@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Tile, FAQ, Person, Place, Organization, Tradegood, Culture, WorkOfArt
 from tile_logic import get_matrix
 import random
@@ -59,19 +59,17 @@ def place_detail(request, place_id):
     place = get_object_or_404(Place, id=place_id)
     tiles = place.tiles.all()
     try:
-        parent_loc = Place.objects.filter(name=place.parent_location)[0]
+        parent_location = Place.objects.filter(name=place.parent_location)[0]
     except IndexError:
-        parent_loc = None
-    sub_locations = Place.objects.filter(parent_location=place.name)
-    people = Person.objects.filter(location=place.name)
-    organizations = Organization.objects.filter(location=place.name)
+        parent_location = None
+    sub_locations = Place.objects.filter(parent_location=place.id)
+    organizations = Organization.objects.filter(locations=place.id)
     tradegoods = Tradegood.objects.filter(location=place.name)
     works = WorkOfArt.objects.filter(location=place.name)
     context = {
     "place" : place,
     "sub_locations" : sub_locations,
-    "people" : people,
-    "parent_loc" : parent_loc,
+    "parent_loc" : parent_location,
     "organizations" : organizations,
     "tradegoods" : tradegoods,
     "works" : works,
@@ -82,14 +80,10 @@ def place_detail(request, place_id):
 def person_detail(request, person_id):
     person = get_object_or_404(Person, id=person_id)
     try:
-        person_loc = Place.objects.filter(name=person.location)[0]
-    except IndexError:
-        person_loc = None
-    try:
         tile = Tile.objects.filter(title=person.tile)[0]
     except IndexError:
         tile = None
-    return render(request, 'tile_map/world_info/person_detail.html', {"person":person, "person_loc":person_loc, "tile":tile})
+    return render(request, 'tile_map/world_info/person_detail.html', {"person":person, "tile":tile})
 
 def organization_detail(request, organization_id):
     organization = get_object_or_404(Organization, id=organization_id)

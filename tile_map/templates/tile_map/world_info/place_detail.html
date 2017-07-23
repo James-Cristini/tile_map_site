@@ -5,11 +5,13 @@
 {% endblock %}
 
 {% block body %}
-</br></br></br>
+
+</br>
 <div id="current_location_div">
     <div id="place_name_and_img">
       <h2>{{place.name|linebreaksbr}}</h2>
-      <img src="\static\tile_map\place_imgs\{{place.image_name}}.jpg" />
+      <img src="/static/tile_map/place_imgs/{{place.image_name}}.jpg" />
+
     </div>
   </br>
     <div id="place_desc">
@@ -31,7 +33,7 @@
   <div class="row">
     {% for tile in tiles %}
     <a href="{% url 'tile_map:tile_detail' tile.id %}">
-      <div class="col-md-2 col-sm-3 col-xs-4" >
+      <div class="col-md-1 col-sm-3 col-xs-4" >
         <img id="tile_image" src="\static\tile_map\tile_imgs\thumb\{{ tile.title }}_thumb.jpg"/>
         <h5>
           {{tile.title}}
@@ -88,7 +90,7 @@
     {% for organization in organizations %}
     <a href="/tile_map/world_info/organizations/{{organization.id}}">
       <div class="col-md-2 col-sm-3 col-xs-4" >
-        <img id="tile_image" src="\static\tile_map\porganization_imgs\{{organization.image_name}}.jpg"/>
+        <img id="tile_image" src="\static\tile_map\organization_imgs\{{organization.image_name}}.jpg"/>
         <h5>
           {{organization.name}}
         </h5>

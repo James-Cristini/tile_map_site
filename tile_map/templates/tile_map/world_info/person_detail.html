@@ -16,7 +16,7 @@
 <div id="description_div">
   <p>
     <h5>Description</h5>
-    {{person.description|linebreaksbr}}
+    {{person.description|safe|linebreaksbr}}
   </p>
 </div>
 {% endif %}

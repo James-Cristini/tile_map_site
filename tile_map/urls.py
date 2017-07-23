@@ -1,5 +1,6 @@
 from django.conf.urls import url
 from . import views
+from accounts.views import login_view, register_view, logout_view
 
 app_name='tile_map'
 
@@ -35,4 +36,9 @@ urlpatterns = [
     # TODO make this map page a more dynamic zoomable image
     # /tile_map/full_map
     url(r'^full_map$', views.full_map, name='full_map'),
+
+
+    url(r'^login/', login_view, name='login'),
+    url(r'^logout/', logout_view, name='logout'),
+    url(r'^register/', register_view, name='register'),
 ]
